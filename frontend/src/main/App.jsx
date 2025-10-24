@@ -1,5 +1,5 @@
 import React from 'react';
-import 'boorstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min';
 import './App.css';
 
@@ -23,7 +23,30 @@ function App(){
         <AuthProvider>
             <Router>
                 <div className='app'> {/*Layout principal com grid e sem fundo branco */}
+                  {/* Exibe a estrtura fixa apenas se a usuário estiver ligado */}
+                  <PrivateRoute>
+                    <logo/ >
+                    <Nav/ >
+                  </PrivateRoute>
+                  <main className='app-content'>
+                    <Routes>
+                        <Route path="/Login" element={<Login/>}/>
+                        <Route path="/Register" element={<Register/>}/>
+                        {/* Rotas privadas */}
+                        <route
+                            path="/"
 
+                            element={
+                                <PrivateRoute>
+                                    <UserCrud />
+                                </PrivateRoute>
+                            }
+                        />
+                        <route
+                       
+                        />
+                    </Routes>
+                  </main>
                 </div>
             </Router>
         </AuthProvider>
