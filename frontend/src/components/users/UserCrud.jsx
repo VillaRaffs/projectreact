@@ -14,3 +14,26 @@ const initialSate = {
     user: { name: '',email:''},
     list: {}
 };
+
+export default class UserCrud extends Component{
+    state = { ...initialSate};
+
+    componentDidMount(){
+        axios(baseUrl)
+        .then(resp => this.setState({ list: resp.data }))
+        .catch(err => console.error("Erro ao carregar usuários:", err));
+    }
+}
+
+clear(){
+    this.setState({ user: initialState.user});
+}
+
+save(){
+    const user = this.state.user;
+    const method = use.id ? 'put' : 'post';
+    const url = use.id ? `${baseUrl}/${user.id}`: baseUrl;
+
+    axios[method](url, user)
+    
+}
